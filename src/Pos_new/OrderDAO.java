@@ -10,14 +10,15 @@ import java.util.List;
 
 //주문/결제 데이터베이스 접근을 담당하는 클래스
 public class OrderDAO {
+	// 필드
+	private Connection conn = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
+	
 	private final String driver = "com.mysql.cj.jdbc.Driver";
 	private final String url = "jdbc:mysql://localhost:3306/web_db";
 	private final String id = "web";
 	private final String pw = "web";
-
-	private Connection conn = null;
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
 
 	// 생성자
 	public OrderDAO() {}

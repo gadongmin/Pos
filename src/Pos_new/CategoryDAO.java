@@ -11,7 +11,7 @@ import java.util.List;
 
 //카테고리 데이터베이스 접근을 담당하는 클래스
 public class CategoryDAO {
-
+	// 필드
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private Statement stmt = null; // getAllCategories에서 Statement 사용
