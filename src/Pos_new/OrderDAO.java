@@ -56,7 +56,8 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "INSERT INTO orders (menu_id, quantity, table_num) VALUES (?, ?, ?)";
+			String query = "INSERT INTO orders (menu_id, quantity, table_num, ispaid) "
+					     + "VALUES (?, ?, ?, FALSE)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, menuId);
 			pstmt.setInt(2, quantity);
@@ -79,7 +80,9 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "SELECT * FROM orders";
+			String query = "SELECT * "
+						 + "FROM orders "
+						 + "WHERE ispaid = FALSE";
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
 
@@ -108,7 +111,10 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "SELECT * FROM orders WHERE table_num = ?";
+			String query = "SELECT * "
+						 + "FROM orders "
+						 + "WHERE table_num = ? "
+						 + "AND ispaid = FALSE";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, tableNum);
 			rs = pstmt.executeQuery();
