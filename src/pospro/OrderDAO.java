@@ -320,7 +320,7 @@ public class OrderDAO {
 			pstmt.setInt(1, orderId);
 			
 			// 쿼리 실행 (DB 데이터 수정)
-			count = pstmt.executeUpdate();
+			int result = pstmt.executeUpdate();
 		
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
@@ -350,7 +350,7 @@ public class OrderDAO {
 			pstmt.setInt(1, tableNum);
 			
 			// 쿼리 실행 (DB 데이터 수정)
-			count = pstmt.executeUpdate();
+			int result = pstmt.executeUpdate();
 		
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
