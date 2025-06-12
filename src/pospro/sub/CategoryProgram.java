@@ -10,14 +10,10 @@ import pospro.vo.CategoryVO;
 
 public class CategoryProgram {
 
-	// 필드
-
-	// 생성자
+	CategoryDAO categoryDao = new CategoryDAO();
 
 	// 메소드
 	public void categoryManagementMenu(Scanner sc) throws SQLException {
-
-		CategoryDAO categoryDao = new CategoryDAO();
 
 		while (true) {
 			System.out.println("\n카테고리 -----------------------------------------------------------");
@@ -47,76 +43,17 @@ public class CategoryProgram {
 
 			switch (sub) {
 			case 1:
-				System.out.println("\n등록 ..............................................................");
-				System.out.println("위치 : 홈 > 카테고리 > 등록");
-				sc.nextLine();
-				System.out.print("1. 이모티콘 : ");
-				String emoji = sc.nextLine();
-				System.out.print("2. 이 름 : ");
-				String name = sc.nextLine();
-				System.out.print("3. 설 명 : ");
-				String desc = sc.nextLine();
-				categoryDao.categoryInsert(emoji, name, desc);
-				System.out.println("<등록되었습니다.>");
-				System.out.println("");
-
+				this.insertCategory(sc);
 				break;
 
 			case 2:
-				System.out.println("\n수정 ..............................................................");
-				System.out.println("위치 : 홈 > 카테고리 > 수정");
 
-				int catId;
-
-				while (true) {
-					try {
-						System.out.print("카테고리번호 : ");
-						catId = sc.nextInt();
-						sc.nextLine(); // 입력 버퍼 비우기
-
-						break;
-
-					} catch (InputMismatchException e) {
-						System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
-						sc.nextLine(); // 잘못된 입력 버리기
-					}
-				}
-
-				System.out.print("1. 이모티콘 : ");
-				String newEmoji = sc.nextLine();
-				System.out.print("2. 이 름 : ");
-				String newName = sc.nextLine();
-				System.out.print("3. 설 명 : ");
-				String newDesc = sc.nextLine();
-				categoryDao.updateCategory(catId, newEmoji, newName, newDesc);
-				System.out.println("<수정되었습니다.>");
-				System.out.println("");
+				this.updateCategory(sc);
 				break;
 
 			case 3:
-				System.out.println("\n삭제 ..............................................................");
-				System.out.println("위치 : 홈 > 카테고리 > 삭제");
 
-				int delId;
-
-				while (true) {
-					try {
-						System.out.print("카테고리번호 : ");
-						delId = sc.nextInt();
-						sc.nextLine(); // 입력 버퍼 비우기
-
-						break;
-
-					} catch (InputMismatchException e) {
-						System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
-						sc.nextLine(); // 잘못된 입력 버리기
-					}
-				}
-
-				categoryDao.deleteCategory(delId);
-				System.out.println("<삭제되었습니다.>");
-				System.out.println("");
-
+				this.deleteCategory(sc);
 				break;
 
 			case 0:
@@ -125,8 +62,82 @@ public class CategoryProgram {
 
 			default:
 				System.out.println("잘못된 입력입니다.");
+			}// switch
+		} // while
+	}
+
+	// 카테고리 등록
+	public void insertCategory(Scanner sc) throws SQLException {
+		System.out.println("\n등록 ..............................................................");
+		System.out.println("위치 : 홈 > 카테고리 > 등록");
+		sc.nextLine();
+		System.out.print("1. 이모티콘 : ");
+		String emoji = sc.nextLine();
+		System.out.print("2. 이 름 : ");
+		String name = sc.nextLine();
+		System.out.print("3. 설 명 : ");
+		String desc = sc.nextLine();
+		categoryDao.categoryInsert(emoji, name, desc);
+		System.out.println("<등록되었습니다.>");
+		System.out.println("");
+	}
+
+	// 카테고리 수정
+	public void updateCategory(Scanner sc) throws SQLException {
+		System.out.println("\n수정 ..............................................................");
+		System.out.println("위치 : 홈 > 카테고리 > 수정");
+
+		int catId;
+
+		while (true) {
+			try {
+				System.out.print("카테고리번호 : ");
+				catId = sc.nextInt();
+				sc.nextLine(); // 입력 버퍼 비우기
+
+				break;
+
+			} catch (InputMismatchException e) {
+				System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
+				sc.nextLine(); // 잘못된 입력 버리기
 			}
 		}
+
+		System.out.print("1. 이모티콘 : ");
+		String newEmoji = sc.nextLine();
+		System.out.print("2. 이 름 : ");
+		String newName = sc.nextLine();
+		System.out.print("3. 설 명 : ");
+		String newDesc = sc.nextLine();
+		categoryDao.updateCategory(catId, newEmoji, newName, newDesc);
+		System.out.println("<수정되었습니다.>");
+		System.out.println("");
+	}
+
+	// 카테고리 삭제
+	public void deleteCategory(Scanner sc) throws SQLException {
+		System.out.println("\n삭제 ..............................................................");
+		System.out.println("위치 : 홈 > 카테고리 > 삭제");
+
+		int delId;
+
+		while (true) {
+			try {
+				System.out.print("카테고리번호 : ");
+				delId = sc.nextInt();
+				sc.nextLine(); // 입력 버퍼 비우기
+
+				break;
+
+			} catch (InputMismatchException e) {
+				System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
+				sc.nextLine(); // 잘못된 입력 버리기
+			}
+		}
+
+		categoryDao.deleteCategory(delId);
+		System.out.println("<삭제되었습니다.>");
+		System.out.println("");
 	}
 
 }
