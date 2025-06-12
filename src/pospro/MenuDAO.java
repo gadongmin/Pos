@@ -60,7 +60,8 @@ public class MenuDAO {
 		this.connect();
 		
 		try {
-			String query = "INSERT INTO menu VALUES (NULL, ?, ?, ?)";
+			String query = "INSERT INTO menu "
+						 + "VALUES (NULL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, name);
 			pstmt.setInt(2, price);
@@ -86,7 +87,8 @@ public class MenuDAO {
 		this.connect();
 		
 		try {
-			String query = "SELECT * FROM menu";
+			String query = " SELECT * "
+						 + " FROM menu ";
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -117,7 +119,9 @@ public class MenuDAO {
 		this.connect();
 		
 		try {
-			String query = "SELECT * FROM menu WHERE menu_id = ?";
+			String query = " SELECT * "
+						 + " FROM menu "
+						 + " WHERE menu_id = ? ";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
@@ -148,7 +152,9 @@ public class MenuDAO {
 		this.connect();
 		
 		try {
-			String query = "UPDATE menu SET name = ?, price = ? WHERE menu_id = ?";
+			String query = " UPDATE menu "
+						 + " SET name = ?, price = ? "
+						 + " WHERE menu_id = ? ";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, name);
 			pstmt.setInt(2, price);
@@ -174,7 +180,9 @@ public class MenuDAO {
 		this.connect();
 		
 		try {
-			String query = "DELETE FROM menu WHERE menu_id = ?";
+			String query = " DELETE "
+						 + " FROM menu "
+						 + " WHERE menu_id = ? ";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			count = pstmt.executeUpdate();

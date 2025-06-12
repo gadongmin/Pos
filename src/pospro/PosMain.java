@@ -175,7 +175,7 @@ public class PosMain {
 	    }
 
 	// 메뉴 관리 메뉴
-		 static void menuManagementMenu(Scanner sc) throws SQLException {
+		public static void menuManagementMenu(Scanner sc) throws SQLException {
 		        MenuDAO menuDAO = new MenuDAO();
 		        CategoryDAO categoryDAO = new CategoryDAO();
 
@@ -306,7 +306,7 @@ public class PosMain {
 	
 
 	// 카테고리 관리 메뉴
-		 static void categoryManagementMenu(Scanner sc) throws SQLException {
+		public static void categoryManagementMenu(Scanner sc) throws SQLException {
 		    	
 		    	CategoryDAO categoryDao = new CategoryDAO();
 		        

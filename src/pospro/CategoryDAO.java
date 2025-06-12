@@ -105,7 +105,8 @@ public class CategoryDAO {
 		this.connect();
 
 		try {
-			String query = " select * from category ";
+			String query = " select * "
+						 + " from category ";
 					stmt = conn.createStatement();
 					  rs = stmt.executeQuery(query);
 

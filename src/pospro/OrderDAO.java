@@ -148,7 +148,9 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "SELECT * FROM orders WHERE ispaid = ?";
+			String query = " SELECT * "
+						 + " FROM orders "
+						 + " WHERE ispaid = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setBoolean(1, isPaid);
 			rs = pstmt.executeQuery();
@@ -179,7 +181,9 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "SELECT * FROM orders WHERE order_id = ?";
+			String query = " SELECT * "
+						 + " FROM orders "
+						 + " WHERE order_id = ? ";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, orderId);
 			rs = pstmt.executeQuery();
@@ -209,7 +213,9 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "UPDATE orders SET quantity = ?, table_num = ? WHERE order_id = ?";
+			String query = " UPDATE orders "
+						 + " SET quantity = ?, table_num = ? "
+						 + " WHERE order_id = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, quantity);
 			pstmt.setInt(2, tableNum);
@@ -231,7 +237,9 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "DELETE FROM orders WHERE order_id = ?";
+			String query = " DELETE "
+						 + " FROM orders "
+						 + " WHERE order_id = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, orderId);
 			count = pstmt.executeUpdate();
@@ -251,7 +259,9 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "UPDATE orders SET ispaid = TRUE WHERE order_id = ?";
+			String query = " UPDATE orders "
+						 + " SET ispaid = TRUE "
+						 + " WHERE order_id = ? ";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, orderId);
 			count = pstmt.executeUpdate();
@@ -272,7 +282,9 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "UPDATE orders SET ispaid = TRUE WHERE table_num = ?";
+			String query = " UPDATE orders "
+						 + " SET ispaid = TRUE "
+						 + " WHERE table_num = ? ";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, tableNum);
 			count = pstmt.executeUpdate();
