@@ -285,22 +285,27 @@ public class OrderDAO {
 	}
 
 	// 총 매출 조회
-	public int selectTotalSales() {
+	public int selectTotalSales(String targetDate) {
 		
 		int total = 0;
 		
 		this.connect();
 
 		try {
-			String query = "SELECT SUM(o.quantity * m.price) AS total "
-					     + "FROM orders o JOIN menu m ON o.menu_id = m.menu_id "
-					     + "WHERE o.ispaid = TRUE";
+			String query = " SELECT SUM(o.quantity * m.price) AS total "
+					     + " FROM orders o JOIN menu m ON o.menu_id = m.menu_id "
+					     + " WHERE o.ispaid = TRUE "
+					     + " AND DATE(o.order_date) = ? ";
 			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, targetDate);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				total = rs.getInt("total");
-			}
+			
+			}if (total == 0) {
+	            System.out.println("해당날짜에는 매출이 없습니다.");
+	        }
 		
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
@@ -318,9 +323,12 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "SELECT SUM(o.quantity * m.price) AS total "
-						 + "FROM orders o JOIN menu m ON o.menu_id = m.menu_id "
-						 + "WHERE o.ispaid = TRUE AND m.category_id = ?";
+			String query = " SELECT SUM(o.quantity * m.price) AS total "
+						 + " FROM orders o "
+						 + " JOIN menu m "
+						 + " ON o.menu_id = m.menu_id "
+						 + " WHERE o.ispaid = TRUE "
+						 + " AND m.category_id = ? ";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, categoryId);
 			rs = pstmt.executeQuery();

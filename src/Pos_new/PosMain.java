@@ -155,7 +155,7 @@ public class PosMain { // 프로그램의 시작점
 	                    System.out.println("위치 : 홈 > 매출 > 날짜");
 	                    System.out.print("날   짜 : ");
 	                    String date = sc.nextLine(); // 날짜 입력 (실제로는 날짜 입력 가능)
-	                    int total = orderDAO.selectTotalSales();
+	                    int total = orderDAO.selectTotalSales(date);
 	                    System.out.println("매출액 : " + total + "원");
 	                    break;
 	                
@@ -167,7 +167,7 @@ public class PosMain { // 프로그램의 시작점
 	                    List<CategoryVO> categories = categoryDAO.getAllCategories();
 	                    for (CategoryVO c : categories) {
 	                        int sales = orderDAO.selectSalesByCategory(c.getId());
-	                        System.out.println("카테고리(" + c.getId() + ") : " + sales + "원");
+	                        System.out.println(c.getName() + " : " + sales + "원");
 	                    }
 	                    break;
 	                
