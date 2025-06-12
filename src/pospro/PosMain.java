@@ -7,7 +7,9 @@ import java.util.Scanner;
 
 public class PosMain {
 	public static void main(String[] args) {
+		
 		Scanner sc = new Scanner(System.in);
+		
 		while (true) { // 프로그램 종료시까지 무한반복
 			System.out.println("\n********************************************************************");
 			System.out.println("                           프로그램 시작                        ");
@@ -57,6 +59,7 @@ public class PosMain {
 
 	  // 주문/결제 메뉴 
 	  public static void orderPaymentMenu(Scanner sc) throws SQLException {
+		  
 		  OrderDAO orderDAO = new OrderDAO();
 		  MenuDAO menuDAO = new MenuDAO();
 		  
@@ -74,6 +77,7 @@ public class PosMain {
 	            
 	            System.out.print("\n[주문 / 결제 번호를 입력해주세요]        * 0번 상위메뉴\n주문 / 결제 번호 : ");
 	            int sub = sc.nextInt();
+	            
 	            if (sub == 0) break;
 	            sc.nextLine();
 	            
@@ -88,8 +92,8 @@ public class PosMain {
 	                    for (MenuVO m : menus) {
 	                        System.out.println(m.getId() + " - " + m.getName() + " (" + m.getPrice() + "원)");
 	                    }
-	                    
 	                    System.out.println("");
+	                    
 	                    System.out.print("1. 메뉴번호 : ");
 	                    int menuId = sc.nextInt();
 	                    System.out.print("2. 메뉴수량 : ");
@@ -107,6 +111,8 @@ public class PosMain {
 	                case 2:
 	                    System.out.println("\n삭제 ..............................................................");
 	                    System.out.println("위치 : 홈 > 주문 / 결제 > 삭제");
+	                    System.out.println("");
+	                    
 	                    System.out.print("1. 주문번호 : ");
 	                    int delId = sc.nextInt();
 	                    sc.nextLine();
@@ -122,6 +128,7 @@ public class PosMain {
 	    			    System.out.println("      1. 전체결제                    2. 개별결제");
 	    			    System.out.println(".....................................................................");
 	    			    System.out.print("[결제 번호를 입력해주세요]        * 0번 상위메뉴\n위치 : 홈 > 주문 / 결제 > 결제\n결제 번호 : ");
+	    			    System.out.println("");
 	    			    int pay = sc.nextInt();
 	    			    
 	    			    if (pay == 0) break;

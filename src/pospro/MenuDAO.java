@@ -16,10 +16,10 @@ public class MenuDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
-	private final String driver = "com.mysql.cj.jdbc.Driver";
-	private final String url = "jdbc:mysql://localhost:3306/web_db";
-	private final String id = "web";
-	private final String pw = "web";
+	private String driver = "com.mysql.cj.jdbc.Driver";
+	private String url = "jdbc:mysql://localhost:3306/web_db";
+	private String id = "web";
+	private String pw = "web";
 
 	// 생성자
 	public MenuDAO() {}
