@@ -1,4 +1,4 @@
-package Pos_new;
+package pospro;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

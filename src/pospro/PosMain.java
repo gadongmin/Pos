@@ -1,11 +1,11 @@
-package Pos_new;
+package pospro;
 
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class PosMain { // 프로그램의 시작점
+public class PosMain {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		while (true) { // 프로그램 종료시까지 무한반복
@@ -57,7 +57,7 @@ public class PosMain { // 프로그램의 시작점
 	            System.out.println("<주문현황>");	// 현재 주문 현황 출력
 	            List<OrderVO> orders = orderDAO.selectAllOrders();
 	            for (OrderVO o : orders) {
-	                System.out.println(o.getId() + " - 메뉴번호(" + o.getMenuId() + ") / 메뉴수량(" + o.getQuantity() + ") / 테이블번호(" + o.getTableNo() + ")");
+	                System.out.println(o.getId() + " - 메뉴번호(" + o.getMenuName() + ") / 메뉴수량(" + o.getQuantity() + ") / 테이블번호(" + o.getTableNo() + ")");
 	            }	
 	            System.out.print("\n[주문 / 결제 번호를 입력해주세요]        * 0번 상위메뉴\n주문 / 결제 번호 : ");
 	            int sub = sc.nextInt();
@@ -142,7 +142,7 @@ public class PosMain { // 프로그램의 시작점
 
 	        while (true) {
 	            System.out.println("\n매출 ---------------------------------------------------------------");
-	            System.out.println("      1. 날짜                     2. 분야                ");
+	            System.out.println("      1. 일일                     2. 분야                ");
 	            System.out.println("--------------------------------------------------------------------");
 	            System.out.print("[매출 번호를 입력해주세요]        * 0번 상위메뉴\n매출 번호 : ");
 	            int sub = sc.nextInt();
@@ -151,19 +151,16 @@ public class PosMain { // 프로그램의 시작점
 	            if (sub == 0) break;
 	            switch (sub) {
 	                case 1:
-	                    System.out.println("\n날짜 ..............................................................");
+	                    System.out.println("\n일일 ..............................................................");
 	                    System.out.println("위치 : 홈 > 매출 > 날짜");
-	                    System.out.print("날   짜 : ");
-	                    String date = sc.nextLine(); // 날짜 입력 (실제로는 날짜 입력 가능)
-	                    int total = orderDAO.selectTotalSales(date);
-	                    System.out.println("매출액 : " + total + "원");
+	                    int total = orderDAO.selectTotalSales();
+	                    System.out.println("\\n매출액 : " + total + "원");
 	                    break;
 	                
 	                case 2:
 	                    System.out.println("\n분야 ..............................................................");
 	                    System.out.println("위치 : 홈 > 매출 > 분야");
-	                    System.out.print("날   짜 : ");
-	                    date = sc.nextLine(); // 날짜 입력 (실제로는 날짜 입력 가능)
+                        System.out.println("");
 	                    List<CategoryVO> categories = categoryDAO.getAllCategories();
 	                    for (CategoryVO c : categories) {
 	                        int sales = orderDAO.selectSalesByCategory(c.getId());
@@ -210,14 +207,14 @@ public class PosMain { // 프로그램의 시작점
 		                case 1:
 		                    System.out.println("\n등록 ..............................................................");
 		                    System.out.println("위치 : 홈 > 메뉴 > 등록");
-		                    System.out.println("<카테고리 현황>");
+		                    System.out.println("\n<카테고리 현황>");
 		                    List<CategoryVO> categories = categoryDAO.getAllCategories();
 		                    for (int i = 0; i < categories.size(); i++) {
 		                        System.out.println(categories.get(i).getId() + " - 이모티콘(" + categories.get(i).getEmoji() + "), 이름(" + categories.get(i).getName() + "), 설명(" + categories.get(i).getDescription() + ")");
 		                    }
 
 		                    int catId;
-		                    System.out.print("1. 카테고리 번호 : ");
+		                    System.out.print("\n1. 카테고리 번호 : ");
 		                    try {
 		                        catId = sc.nextInt();
 		                        sc.nextLine();
@@ -335,6 +332,7 @@ public class PosMain { // 프로그램의 시작점
 		        	}catch(InputMismatchException e) {
 			            System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
 			            sc.nextLine(); // 잘못된 입력 버리기
+			            
 		            continue; // 다시 입력받기
 		            }
 		            

@@ -1,4 +1,4 @@
-package Pos_new;
+package pospro;
 
 //주문 정보 저장
 public class OrderVO {
@@ -7,6 +7,7 @@ public class OrderVO {
 	private int quantity;
 	private int tableNo;
 	private boolean isPaid;
+    private String menuName;
 
 	// 생성자
 	public OrderVO() {
@@ -60,4 +61,12 @@ public class OrderVO {
 	public void setPaid(boolean isPaid) {
 		this.isPaid = isPaid;
 	}
+    
+	public String getMenuName() {
+        return menuName;
+    }
+    
+	public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
 }

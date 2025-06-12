@@ -34,7 +34,7 @@ create table orders(
     ,quantity		int 		
     ,table_num 		int
     ,ispaid 		boolean
-    ,order_date 	varchar(100)
+    ,order_date 	date
     ,menu_id		int		
 	,constraint orders_fk foreign key(menu_id)
     references menu(menu_id)

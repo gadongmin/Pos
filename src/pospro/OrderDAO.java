@@ -1,4 +1,4 @@
-package Pos_new;
+package pospro;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -57,8 +57,8 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "INSERT INTO orders (menu_id, quantity, table_num, ispaid) "
-					     + "VALUES (?, ?, ?, FALSE)";
+			String query = "INSERT INTO orders (menu_id, quantity, table_num, ispaid, sorder_date) "
+					     + "VALUES (?, ?, ?, FALSE, ?)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, menuId);
 			pstmt.setInt(2, quantity);
@@ -81,9 +81,10 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "SELECT * "
-						 + "FROM orders "
-						 + "WHERE ispaid = FALSE";
+	        String query = "SELECT o.*, m.name AS menu_name "
+                		 + "FROM orders o "
+                		 + "JOIN menu m ON o.menu_id = m.menu_id "
+                		 + "WHERE o.ispaid = FALSE";
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
 
@@ -94,6 +95,7 @@ public class OrderDAO {
 										   ,rs.getInt("table_num")
 										   ,rs.getBoolean("ispaid")
 										   );
+				order.setMenuName(rs.getString("menu_name"));
 				orderList.add(order);
 			}
 		} catch (SQLException e) {
@@ -285,7 +287,7 @@ public class OrderDAO {
 	}
 
 	// 총 매출 조회
-	public int selectTotalSales(String targetDate) {
+	public int selectTotalSales() {
 		
 		int total = 0;
 		
@@ -293,18 +295,16 @@ public class OrderDAO {
 
 		try {
 			String query = " SELECT SUM(o.quantity * m.price) AS total "
-					     + " FROM orders o JOIN menu m ON o.menu_id = m.menu_id "
-					     + " WHERE o.ispaid = TRUE "
-					     + " AND DATE(o.order_date) = ? ";
+					     + " FROM orders o "
+					     + " JOIN menu m "
+					     + " ON o.menu_id = m.menu_id "
+					     + " WHERE o.ispaid = TRUE ";
+			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, targetDate);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				total = rs.getInt("total");
-			
-			}if (total == 0) {
-	            System.out.println("해당날짜에는 매출이 없습니다.");
 	        }
 		
 		} catch (SQLException e) {
