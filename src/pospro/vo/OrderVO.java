@@ -1,4 +1,4 @@
-package pospro;
+package pospro.vo;
 
 //주문 정보 저장
 public class OrderVO {

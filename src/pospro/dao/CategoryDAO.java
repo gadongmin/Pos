@@ -1,4 +1,4 @@
-package pospro;
+package pospro.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import pospro.vo.CategoryVO;
 
 //카테고리 데이터베이스 접근을 담당하는 클래스
 public class CategoryDAO {
