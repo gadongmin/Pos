@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Scanner;
 
 import pospro.dao.CategoryDAO;
-import pospro.dao.OrderDAO;
+import pospro.dao.SaleDAO;
 import pospro.vo.CategoryVO;
 
 public class SaleProgram {
-	public void showSalesMenu(Scanner sc) throws SQLException {
-		CategoryDAO categoryDAO = new CategoryDAO();
-		OrderDAO orderDAO = new OrderDAO();
+
+	CategoryDAO categoryDAO = new CategoryDAO();
+	SaleDAO saleDAO = new SaleDAO();
+
+	public void salesMenu(Scanner sc) throws SQLException {
 
 		while (true) {
 			System.out.println("\n매출 ---------------------------------------------------------------");
@@ -25,30 +27,38 @@ public class SaleProgram {
 				break;
 
 			switch (sub) {
-			case 1:
-				System.out.println("\n일일 ..............................................................");
-				System.out.println("위치 : 홈 > 매출 > 일일");
-				int total = orderDAO.selectTotalSales();
-				System.out.println("\n매출액 : " + total + "원");
-
-				break;
-
-			case 2:
-				System.out.println("\n분야 ..............................................................");
-				System.out.println("위치 : 홈 > 매출 > 분야");
-				System.out.println("");
-				List<CategoryVO> categories = categoryDAO.getAllCategories();
-
-				for (CategoryVO c : categories) {
-					int sales = orderDAO.selectSalesByCategory(c.getId());
-					System.out.println(c.getName() + " : " + sales + "원");
-				}
-
-				break;
-
-			default:
-				System.out.println("잘못된 입력입니다.");
+				case 1:
+					this.dailySales();
+					break;
+				
+				case 2:
+					this.categorySales();
+					break;
+	
+				default:
+					System.out.println("잘못된 입력입니다.");
 			}
+		}
+	}
+
+	// 일일 매출 조회
+	private void dailySales() {
+		System.out.println("\n일일 ..............................................................");
+		System.out.println("위치 : 홈 > 매출 > 일일");
+		int total = saleDAO.selectTotalSales();
+		System.out.println("\n매출액 : " + total + "원");
+	}
+
+	// 분야별 매출 조회
+	private void categorySales() throws SQLException {
+		System.out.println("\n분야 ..............................................................");
+		System.out.println("위치 : 홈 > 매출 > 분야");
+		System.out.println("");
+		List<CategoryVO> categories = categoryDAO.getAllCategories();
+
+		for (CategoryVO c : categories) {
+			int sales = saleDAO.selectSalesByCategory(c.getId());
+			System.out.println(c.getName() + " : " + sales + "원");
 		}
 	}
 }
