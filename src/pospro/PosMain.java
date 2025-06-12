@@ -154,7 +154,7 @@ public class PosMain {
 	                    System.out.println("\n일일 ..............................................................");
 	                    System.out.println("위치 : 홈 > 매출 > 날짜");
 	                    int total = orderDAO.selectTotalSales();
-	                    System.out.println("\\n매출액 : " + total + "원");
+	                    System.out.println("\n매출액 : " + total + "원");
 	                    break;
 	                
 	                case 2:

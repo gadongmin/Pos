@@ -57,8 +57,8 @@ public class OrderDAO {
 		this.connect();
 
 		try {
-			String query = "INSERT INTO orders (menu_id, quantity, table_num, ispaid, sorder_date) "
-					     + "VALUES (?, ?, ?, FALSE, ?)";
+			String query = "INSERT INTO orders (menu_id, quantity, table_num, ispaid) "
+					     + "VALUES (?, ?, ?, FALSE)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, menuId);
 			pstmt.setInt(2, quantity);
