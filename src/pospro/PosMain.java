@@ -128,7 +128,6 @@ public class PosMain {
 	    			    System.out.println("      1. 전체결제                    2. 개별결제");
 	    			    System.out.println(".....................................................................");
 	    			    System.out.print("[결제 번호를 입력해주세요]        * 0번 상위메뉴\n위치 : 홈 > 주문 / 결제 > 결제\n결제 번호 : ");
-	    			    System.out.println("");
 	    			    int pay = sc.nextInt();
 	    			    
 	    			    if (pay == 0) break;
