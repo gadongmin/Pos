@@ -11,16 +11,17 @@ import java.util.List;
 
 //카테고리 데이터베이스 접근을 담당하는 클래스
 public class CategoryDAO {
+
 	// 필드
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private Statement stmt = null; // getAllCategories에서 Statement 사용
 	private ResultSet rs = null;
 
-	private static final String driver = "com.mysql.cj.jdbc.Driver";
-	static final String db_url = "jdbc:mysql://localhost:3306/web_db";
-	static final String user = "web";
-	static final String pass = "web";
+	private final String driver = "com.mysql.cj.jdbc.Driver";
+	private final String db_url = "jdbc:mysql://localhost:3306/web_db";
+	private final String user = "web";
+	private final String pass = "web";
 
 	private void connect() {
 
@@ -62,8 +63,7 @@ public class CategoryDAO {
 		try {
 			if (conn != null)
 				conn.close();
-		} catch (SQLException ignored) {
-		}
+		} catch (SQLException ignored) {}
 
 	}
 
@@ -91,9 +91,11 @@ public class CategoryDAO {
 			// 4.결과처리
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return count;
 	}
 
@@ -123,9 +125,11 @@ public class CategoryDAO {
 			
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return cList;
 	}
 
@@ -155,9 +159,11 @@ public class CategoryDAO {
 			
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return vo;
 	}
 
@@ -187,9 +193,11 @@ public class CategoryDAO {
 
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return count;
 	}
 
@@ -210,9 +218,11 @@ public class CategoryDAO {
 
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return count;
 	}
 }

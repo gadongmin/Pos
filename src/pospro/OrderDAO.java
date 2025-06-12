@@ -10,6 +10,7 @@ import java.util.List;
 
 //주문/결제 데이터베이스 접근을 담당하는 클래스
 public class OrderDAO {
+
 	// 필드
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
@@ -100,9 +101,11 @@ public class OrderDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return orderList;
 	}
 
@@ -134,9 +137,10 @@ public class OrderDAO {
 			
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
 		return orderList;
 	}
 
@@ -167,9 +171,11 @@ public class OrderDAO {
 			
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return orderList;
 	}
 
@@ -199,9 +205,11 @@ public class OrderDAO {
 			
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
+			
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return order;
 	}
 
@@ -223,9 +231,11 @@ public class OrderDAO {
 			count = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return count;
 	}
 
@@ -245,9 +255,11 @@ public class OrderDAO {
 			count = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return count;
 	}
 
@@ -268,9 +280,11 @@ public class OrderDAO {
 		
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return count;
 	}
 
@@ -292,9 +306,10 @@ public class OrderDAO {
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
 		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return count;
 	}
 
@@ -321,9 +336,11 @@ public class OrderDAO {
 		
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
+		
+		} finally {
+			this.close();
 		}
-
-		this.close();
+		
 		return total;
 	}
 
@@ -351,9 +368,11 @@ public class OrderDAO {
 			
 		} catch (SQLException e) {
 			System.out.println("error: " + e.getMessage());
-		}
 
-		this.close();
+		} finally {
+			this.close();
+		}
+		
 		return total;
 	}
 
