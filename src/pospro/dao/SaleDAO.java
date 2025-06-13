@@ -87,8 +87,12 @@ public class SaleDAO {
 
 		try {
 			// SQL 쿼리 작성: orders 테이블과 menu 테이블을 조인하여 특정 카테고리의 결제된 주문 매출 합계 조회
-			String query = " SELECT SUM(o.quantity * m.price) AS total " + " FROM orders o " + " JOIN menu m "
-					+ " ON o.menu_id = m.menu_id " + " WHERE o.ispaid = TRUE " + " AND m.category_id = ? ";
+			String query = " SELECT SUM(o.quantity * m.price) AS total "
+						 + " FROM orders o "
+						 + " JOIN menu m "
+						 + " ON o.menu_id = m.menu_id "
+						 + " WHERE o.ispaid = TRUE "
+						 + " AND m.category_id = ? ";
 			pstmt = conn.prepareStatement(query);
 
 			// 파라미터 입력

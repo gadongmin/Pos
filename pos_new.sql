@@ -58,3 +58,10 @@ WHERE ispaid = TRUE
   SELECT * FROM orders
 WHERE ispaid = TRUE
   AND order_date = '2025-06-11';
+  
+SELECT SUM(o.quantity * m.price) AS total 
+FROM orders o
+JOIN menu m 
+ON o.menu_id = m.menu_id 
+WHERE o.ispaid = TRUE 
+AND m.category_id 

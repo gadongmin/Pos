@@ -36,7 +36,18 @@ public class PosMain {
 
 			System.out.print("[시작메뉴 번호를 입력해주세요]        * 0번 프로그램 종료\n시작메뉴 번호 : ");
 
-			int choice = sc.nextInt();
+			int choice;
+			
+			try {
+				choice = sc.nextInt();
+				sc.nextLine();
+			
+			} catch (java.util.InputMismatchException e) {
+				sc.nextLine();
+				System.out.println("잘못된 입력입니다.");
+				
+		        continue;
+			}
 
 			try {
 				switch (choice) {
