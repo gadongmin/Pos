@@ -38,7 +38,6 @@ create table orders(
     ,menu_id		int		
 	,constraint orders_fk foreign key(menu_id)
     references menu(menu_id)
-    
 );
 
 select * from category;
@@ -51,3 +50,11 @@ from orders o, menu m, category c
 where o.menu_id = m.menu_id
 and m.category_id = c.category_id
 ;
+
+SELECT * FROM orders
+WHERE ispaid = TRUE
+  AND DATE(order_date) = '2025-06-11';
+  
+  SELECT * FROM orders
+WHERE ispaid = TRUE
+  AND order_date = '2025-06-11';
